@@ -8,6 +8,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useTheme } from "@/hooks/use-theme";
+import { cn } from "@/lib/utils";
 
 export function ModeToggle() {
   const { theme, setTheme } = useTheme();
@@ -26,16 +27,22 @@ export function ModeToggle() {
           className="relative w-7 h-7 flex-shrink-0"
         >
           <Sun
-            className={`transition-all duration-150 ease-in-out absolute 
-              ${isLightTheme ? "rotate-0 scale-100" : "rotate-90 scale-0"}`}
+            className={cn("transition-all duration-150 ease-in-out absolute", {
+              "rotate-0 scale-100": isLightTheme,
+              "rotate-90 scale-0": !isLightTheme,
+            })}
           />
           <Moon
-            className={`transition-all duration-150 ease-in-out absolute 
-              ${isDarkTheme ? "rotate-0 scale-100" : "rotate-90 scale-0"}`}
+            className={cn("transition-all duration-150 ease-in-out absolute", {
+              "rotate-0 scale-100": isDarkTheme,
+              "rotate-90 scale-0": !isDarkTheme,
+            })}
           />
           <Computer
-            className={`transition-all duration-150 ease-in-out absolute 
-              ${isSystemTheme ? "rotate-0 scale-100" : "rotate-90 scale-0"}`}
+            className={cn("transition-all duration-150 ease-in-out absolute", {
+              "rotate-0 scale-100": isSystemTheme,
+              "rotate-90 scale-0": !isSystemTheme,
+            })}
           />
           <span className="sr-only">Toggle theme</span>
         </Button>
