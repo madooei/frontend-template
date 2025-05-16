@@ -1,4 +1,3 @@
-import { logger } from "@nanostores/logger";
 import { persistentAtom } from "@nanostores/persistent";
 import type { Theme } from "@/types/theme-types";
 
@@ -17,5 +16,7 @@ export function setTheme(newTheme: Theme) {
 }
 
 if (DEBUG) {
-  logger({ $theme });
+  import("@nanostores/logger").then(({ logger }) => {
+    logger({ $theme });
+  });
 }
