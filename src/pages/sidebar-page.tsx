@@ -1,64 +1,89 @@
-/*
-   NavLink is for navigation links that need to render an active state.
-
-   Whenever a NavLink is active, it will automatically have an .active class name for easy styling with CSS:
-
-   .active {
-    color: red;
-   }
-
-   It also has callback props on className, style, and children with the active state for inline styling or conditional rendering:
-
-   <NavLink
-    to="/about"
-    className={({ isActive }) => (isActive ? "text-primary" : "text-muted-foreground")}
-   >
-   </NavLink>
-*/
+import { cn } from "@/lib/utils";
 import { NavLink } from "react-router";
+
+import {
+  Sidebar as SidebarRoot,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupLabel,
+  SidebarGroupContent,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
+  SidebarRail,
+} from "@/components/ui/sidebar";
+import {
+  HomeIcon,
+  InboxIcon,
+  InfoIcon,
+  LogOutIcon,
+  SearchIcon,
+} from "lucide-react";
 
 const pages = [
   {
     path: "/",
     label: "Home",
+    icon: HomeIcon,
   },
   {
     path: "/about",
     label: "About",
+    icon: InfoIcon,
   },
   {
     path: "/messages",
     label: "Inbox",
+    icon: InboxIcon,
   },
   {
     path: "/search",
     label: "Search",
-  },
-  {
-    path: "/login",
-    label: "Logout",
+    icon: SearchIcon,
   },
 ];
 
 const SidebarPage: React.FC = () => {
   return (
-    <nav className="w-64 p-8 border-r border-border">
-      <h1 className="text-xl">Sidebar</h1>
-      <ul>
-        {pages.map((page) => (
-          <li key={page.path} className="p-2">
-            <NavLink
-              className={({ isActive }: { isActive: boolean }) =>
-                isActive ? "text-primary" : "text-muted-foreground"
-              }
-              to={page.path}
-            >
-              {page.label}
-            </NavLink>
-          </li>
-        ))}
-      </ul>
-    </nav>
+    <SidebarRoot>
+      <SidebarContent>
+        <SidebarGroup>
+          <SidebarGroupLabel>Frontend Template</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {pages.map((item) => (
+                <SidebarMenuItem key={item.label}>
+                  <SidebarMenuButton asChild>
+                    <NavLink
+                      to={item.path}
+                      className={({ isActive }) =>
+                        cn(
+                          "flex items-center gap-2",
+                          isActive && "text-primary",
+                        )
+                      }
+                    >
+                      <item.icon />
+                      {item.label}
+                    </NavLink>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+      </SidebarContent>
+      <SidebarFooter>
+        <SidebarMenuButton asChild>
+          <NavLink to="/login">
+            <LogOutIcon />
+            Logout
+          </NavLink>
+        </SidebarMenuButton>
+      </SidebarFooter>
+      <SidebarRail />
+    </SidebarRoot>
   );
 };
 

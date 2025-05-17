@@ -1,23 +1,18 @@
-/*
-   Use <Link> when the link doesn't need active styling:
-
-   <Link to="/about">About</Link>
-*/
-import { Link } from "react-router";
+import { DecoratedLink } from "@/components/decorated-link";
 
 const InboxPage: React.FC = () => {
   return (
     <div className="p-8">
       <h1 className="text-2xl mb-4">Inbox</h1>
-      <ul>
+      <ul className="list-disc pl-5">
         <li>
-          <Link to="/messages/1">View message 1</Link>
+          <DecoratedLink to="/messages/1">View message 1</DecoratedLink>
         </li>
         <li>
-          <Link to="/messages/2">View message 2</Link>
+          <DecoratedLink to="/messages/2">View message 2</DecoratedLink>
         </li>
         <li>
-          <Link to="/messages/3">View message 3</Link>
+          <DecoratedLink to="/messages/3">View message 3</DecoratedLink>
         </li>
       </ul>
     </div>

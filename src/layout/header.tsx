@@ -1,12 +1,17 @@
 import { ModeToggle } from "@/components/theme-toggle";
+import { SidebarTrigger } from "@/components/ui/sidebar";
+import { Link } from "react-router";
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 border-b bg-background/40 backdrop-blur px-4">
+    <header className="border-b bg-background/40 backdrop-blur px-4">
       <div className="flex items-center justify-between py-4">
-        <a href="/" className="flex items-center gap-x-2.5">
-          <p className="font-bold">Frontend Template</p>
-        </a>
+        <div className="flex items-center gap-2">
+          <SidebarTrigger />
+          <Link to="/" className="flex items-center gap-x-2.5">
+            <p className="font-bold">Frontend Template</p>
+          </Link>
+        </div>
         <ModeToggle />
       </div>
     </header>
