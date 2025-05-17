@@ -1,12 +1,82 @@
-import { Button } from "@/components/ui/button";
+import { Suspense, lazy } from "react";
+import { Routes, Route } from "react-router";
 import BaseLayout from "@/layout/base";
+import ShellLayout from "@/layout/shell";
+
+// Lazy load all page components
+const HomePage = lazy(() => import("@/pages/home-page"));
+const AboutPage = lazy(() => import("@/pages/about-page"));
+const LoginPage = lazy(() => import("@/pages/login-page"));
+const NotFoundPage = lazy(() => import("@/pages/not-found-page"));
+const LoadingPage = lazy(() => import("@/pages/loading-page"));
+const MessagePage = lazy(() => import("@/pages/message-page"));
+const InboxPage = lazy(() => import("@/pages/inbox-page"));
+const SearchPage = lazy(() => import("@/pages/search-page"));
+
+// Loading component for Suspense fallback
+const LoadingFallback = ({ className }: { className?: string }) => (
+  <LoadingPage className={className} />
+);
+
+// Wrappers for lazy loading
+const Home = () => (
+  <Suspense fallback={<LoadingFallback />}>
+    <HomePage />
+  </Suspense>
+);
+
+const About = () => (
+  <Suspense fallback={<LoadingFallback />}>
+    <AboutPage />
+  </Suspense>
+);
+
+const Login = () => (
+  <Suspense fallback={<LoadingFallback className="min-h-screen" />}>
+    <LoginPage />
+  </Suspense>
+);
+
+const NotFound = () => (
+  <Suspense fallback={<LoadingFallback className="min-h-screen" />}>
+    <NotFoundPage />
+  </Suspense>
+);
+
+const Message = () => (
+  <Suspense fallback={<LoadingFallback />}>
+    <MessagePage />
+  </Suspense>
+);
+
+const Inbox = () => (
+  <Suspense fallback={<LoadingFallback />}>
+    <InboxPage />
+  </Suspense>
+);
+
+const Search = () => (
+  <Suspense fallback={<LoadingFallback />}>
+    <SearchPage />
+  </Suspense>
+);
+
 function App() {
   return (
     <BaseLayout>
-      <div className="flex flex-col items-center justify-center">
-        <h1 className="text-4xl font-bold my-4">Hello World</h1>
-        <Button>Shadcn Button</Button>
-      </div>
+      <Routes>
+        <Route path="login" element={<Login />} />
+        <Route path="*" element={<NotFound />} />
+        <Route element={<ShellLayout />}>
+          <Route index element={<Home />} />
+          <Route path="about" element={<About />} />
+          <Route path="messages">
+            <Route index element={<Inbox />} />
+            <Route path=":messageId" element={<Message />} />
+          </Route>
+          <Route path="search" element={<Search />} />
+        </Route>
+      </Routes>
     </BaseLayout>
   );
 }
