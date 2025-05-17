@@ -1,13 +1,11 @@
 import { useEffect } from "react";
-import { Footer } from "./footer";
-import { Header } from "./header";
 import { useTheme } from "@/hooks/use-theme";
 
-export default function BaseLayout({
-  children,
-}: {
+interface BaseLayoutProps {
   children: React.ReactNode;
-}) {
+}
+
+const BaseLayout: React.FC<BaseLayoutProps> = ({ children }) => {
   const { resolvedTheme } = useTheme();
 
   useEffect(() => {
@@ -16,11 +14,7 @@ export default function BaseLayout({
     root.classList.add(resolvedTheme);
   }, [resolvedTheme]);
 
-  return (
-    <div className="flex flex-col min-h-screen">
-      <Header />
-      <main className="flex-grow">{children}</main>
-      <Footer />
-    </div>
-  );
-}
+  return <div className="flex flex-col min-h-screen">{children}</div>;
+};
+
+export default BaseLayout;

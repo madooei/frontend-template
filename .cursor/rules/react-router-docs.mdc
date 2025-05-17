@@ -1,0 +1,195 @@
+---
+description: Refer to this document to understand how react-router library works.
+globs: 
+alwaysApply: false
+---
+# React Router
+
+To use React Router, we install the library (`pnpm i react-router`) and wrap the app like this:
+
+```tsx
+import { BrowserRouter } from "react-router";
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      {/* The app */}
+    </BrowserRouter>
+  );
+}
+```
+
+## Routing
+
+Routes are configured by rendering `<Routes />` and `<Route />` components that map URL segments to UI elements.
+
+```tsx
+<Routes>
+  <Route path="/" element={<Home />} />
+  <Route path="login" element={<Login />} />
+  <Route path="about" element={<About />} />
+  <Route path="*" element={<NotFound />} />
+</Routes>
+```
+
+We can also define the home (`path="/"`) route using the `index` syntax:
+
+```tsx
+<Route index element={<Home />} />
+```
+
+The above pattern is called **index routes**, which is particularly useful when using **nested** or **layout** routes.
+
+The `path="*"` is a splat (a.k.a "catchall" or "star") segment.
+
+## Nested Routes
+
+Routes can be nested inside parent routes:
+
+```tsx
+<Route path="messages">
+  <Route index element={<Inbox />} />
+  <Route path=":messageId" element={<Message />} />
+</Route>
+```
+
+A `<Route path>` without an element prop adds a **path prefix** to its child routes.
+
+The path of the parent is automatically included in the child, creating both "/messages" and "/messages/:messageId" URLs.
+
+If a path segment starts with `:`, it becomes a **dynamic segment**.
+
+When the route matches the URL, the dynamic segment is parsed and provided as `params` to other router APIs like `useParams`.
+
+```tsx
+import { useParams } from "react-router";
+
+function Message() {
+  const { messageId } = useParams();
+  // ...
+}
+```
+
+We can use `useSearchParams` to access query parameters. For example, with this route:
+
+```tsx
+ <Route path="search" element={<Search />} />
+```
+
+We can define `Search` to handle URLs like `/search?q=searchTerm`:
+
+```tsx
+import { useSearchParams } from "react-router";
+
+const Search: React.FC = () => {
+  const [searchParams] = useSearchParams();
+  const searchTerm = searchParams.get("q");
+
+  return (
+    <p>
+      You searched for <i>{searchTerm}</i>
+    </p>
+  );
+};
+
+export default SearchResults;
+```
+
+## Layout Routes
+
+Routes without a path create new nesting for their children without adding segments to the URL.
+```tsx
+<Route element={<ShellLayout />}>
+  <Route index element={<Home />} />
+  <Route path="about" element={<About />} />
+</Route>
+```
+
+Child routes are rendered through the `<Outlet/>` in the parent route.
+
+```tsx
+import { Outlet } from "react-router";
+
+export default function ShellLayout() {
+  return (
+    <div>
+      <Outlet />
+    </div>
+  );
+}
+```
+
+## Navigation
+
+Use `<Link />` to navigate:
+
+```tsx
+<Link to="/about">About</Link>
+```
+
+We can also use `<NavLink />` :
+
+```tsx
+<NavLink to="/about">About</NavLink>
+```
+
+The difference is that whenever a `NavLink` is active, it will automatically have an `.active` class name for easy styling with CSS. So it is useful to build navbars for instance.
+
+The `NavLink` also provides these patterns:
+
+```tsx
+// className
+<NavLink
+  to="/messages"
+  className={({ isActive }) =>
+    isActive ? "text-red-500" : "text-black"
+  }
+>
+  Messages
+</NavLink>
+```
+
+```tsx
+// style
+<NavLink
+  to="/messages"
+  style={({ isActive }) => ({
+    color: isActive ? "red" : "black",
+  })}
+>
+  Messages
+</NavLink>
+```
+
+```tsx
+// children
+<NavLink to="/message">
+  {({ isActive }) => (
+    <span className={isActive ? "active" : ""}>
+      {isActive ? "👉" : ""} Tasks
+    </span>
+  )}
+</NavLink>
+```
+
+We can also use `useNavigate` to navigate the user to a new page without the user interacting. This is useful, for instance, after a form submission completes.
+
+```tsx
+import { useNavigate } from "react-router";
+
+export function LoginPage() {
+  let navigate = useNavigate();
+
+  return (
+    <>
+      <MyHeader />
+      <MyLoginForm
+        onSuccess={() => {
+          navigate("/dashboard");
+        }}
+      />
+      <MyFooter />
+    </>
+  );
+}
+```

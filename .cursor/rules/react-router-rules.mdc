@@ -1,7 +1,15 @@
+---
+description: Refer to these rules when writing code that involves client-side navigation with the react-router library.
+globs: 
+alwaysApply: false
+---
+All routes are defined in `src/App.tsx`, and all pages are defined in the `src/pages` folder. We should always lazy-load the pages:
+
+```tsx
 import { Suspense, lazy } from "react";
 import { Routes, Route } from "react-router";
 import BaseLayout from "@/layout/base";
-import ShellLayout from "@/layout/shell";
+import ShellLayout from "./layout/shell";
 
 // Lazy load all page components
 const HomePage = lazy(() => import("@/pages/home-page"));
@@ -9,9 +17,6 @@ const AboutPage = lazy(() => import("@/pages/about-page"));
 const LoginPage = lazy(() => import("@/pages/login-page"));
 const NotFoundPage = lazy(() => import("@/pages/not-found-page"));
 const LoadingPage = lazy(() => import("@/pages/loading-page"));
-const MessagePage = lazy(() => import("@/pages/message-page"));
-const InboxPage = lazy(() => import("@/pages/inbox-page"));
-const SearchPage = lazy(() => import("@/pages/search-page"));
 
 // Loading component for Suspense fallback
 const LoadingFallback = ({ className }: { className?: string }) => (
@@ -43,24 +48,6 @@ const NotFound = () => (
   </Suspense>
 );
 
-const Message = () => (
-  <Suspense fallback={<LoadingFallback />}>
-    <MessagePage />
-  </Suspense>
-);
-
-const Inbox = () => (
-  <Suspense fallback={<LoadingFallback />}>
-    <InboxPage />
-  </Suspense>
-);
-
-const Search = () => (
-  <Suspense fallback={<LoadingFallback />}>
-    <SearchPage />
-  </Suspense>
-);
-
 function App() {
   return (
     <BaseLayout>
@@ -70,11 +57,6 @@ function App() {
         <Route element={<ShellLayout />}>
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
-          <Route path="messages">
-            <Route index element={<Inbox />} />
-            <Route path=":messageId" element={<Message />} />
-          </Route>
-          <Route path="search" element={<Search />} />
         </Route>
       </Routes>
     </BaseLayout>
@@ -82,3 +64,4 @@ function App() {
 }
 
 export default App;
+```
