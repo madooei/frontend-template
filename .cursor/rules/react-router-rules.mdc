@@ -1,0 +1,67 @@
+---
+description: Refer to these rules when writing code that involves client-side navigation with the react-router library.
+globs: 
+alwaysApply: false
+---
+All routes are defined in `src/App.tsx`, and all pages are defined in the `src/pages` folder. We should always lazy-load the pages:
+
+```tsx
+import { Suspense, lazy } from "react";
+import { Routes, Route } from "react-router";
+import BaseLayout from "@/layout/base";
+import ShellLayout from "./layout/shell";
+
+// Lazy load all page components
+const HomePage = lazy(() => import("@/pages/home-page"));
+const AboutPage = lazy(() => import("@/pages/about-page"));
+const LoginPage = lazy(() => import("@/pages/login-page"));
+const NotFoundPage = lazy(() => import("@/pages/not-found-page"));
+const LoadingPage = lazy(() => import("@/pages/loading-page"));
+
+// Loading component for Suspense fallback
+const LoadingFallback = ({ className }: { className?: string }) => (
+  <LoadingPage className={className} />
+);
+
+// Wrappers for lazy loading
+const Home = () => (
+  <Suspense fallback={<LoadingFallback />}>
+    <HomePage />
+  </Suspense>
+);
+
+const About = () => (
+  <Suspense fallback={<LoadingFallback />}>
+    <AboutPage />
+  </Suspense>
+);
+
+const Login = () => (
+  <Suspense fallback={<LoadingFallback className="min-h-screen" />}>
+    <LoginPage />
+  </Suspense>
+);
+
+const NotFound = () => (
+  <Suspense fallback={<LoadingFallback className="min-h-screen" />}>
+    <NotFoundPage />
+  </Suspense>
+);
+
+function App() {
+  return (
+    <BaseLayout>
+      <Routes>
+        <Route path="login" element={<Login />} />
+        <Route path="*" element={<NotFound />} />
+        <Route element={<ShellLayout />}>
+          <Route index element={<Home />} />
+          <Route path="about" element={<About />} />
+        </Route>
+      </Routes>
+    </BaseLayout>
+  );
+}
+
+export default App;
+```
