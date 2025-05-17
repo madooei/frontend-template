@@ -12,6 +12,7 @@ const LoadingPage = lazy(() => import("@/pages/loading-page"));
 const MessagePage = lazy(() => import("@/pages/message-page"));
 const InboxPage = lazy(() => import("@/pages/inbox-page"));
 const SearchPage = lazy(() => import("@/pages/search-page"));
+const ToasterPage = lazy(() => import("@/pages/toaster-page"));
 
 // Loading component for Suspense fallback
 const LoadingFallback = ({ className }: { className?: string }) => (
@@ -61,6 +62,12 @@ const Search = () => (
   </Suspense>
 );
 
+const Toaster = () => (
+  <Suspense fallback={<LoadingFallback />}>
+    <ToasterPage />
+  </Suspense>
+);
+
 function App() {
   return (
     <BaseLayout>
@@ -75,6 +82,7 @@ function App() {
             <Route path=":messageId" element={<Message />} />
           </Route>
           <Route path="search" element={<Search />} />
+          <Route path="toaster" element={<Toaster />} />
         </Route>
       </Routes>
     </BaseLayout>
