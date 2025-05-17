@@ -14,6 +14,7 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import {
+  BellIcon,
   HomeIcon,
   InboxIcon,
   InfoIcon,
@@ -41,6 +42,11 @@ const pages = [
     path: "/search",
     label: "Search",
     icon: SearchIcon,
+  },
+  {
+    path: "/toaster",
+    label: "Toaster",
+    icon: BellIcon,
   },
 ];
 
