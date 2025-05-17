@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useTheme } from "@/hooks/use-theme";
 import { cn } from "@/lib/utils";
+import { TooltipButton } from "./tooltip-button";
 
 export function ModeToggle() {
   const { theme, setTheme } = useTheme();
@@ -21,10 +22,11 @@ export function ModeToggle() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button
-          variant="outline"
+        <TooltipButton
+          variant="ghost"
           size="icon"
           className="relative w-7 h-7 flex-shrink-0"
+          tooltipContent="Toggle theme"
         >
           <Sun
             className={cn("transition-all duration-150 ease-in-out absolute", {
@@ -45,7 +47,7 @@ export function ModeToggle() {
             })}
           />
           <span className="sr-only">Toggle theme</span>
-        </Button>
+        </TooltipButton>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem onClick={() => setTheme("light")}>
