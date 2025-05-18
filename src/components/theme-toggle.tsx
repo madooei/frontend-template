@@ -10,7 +10,7 @@ import { useTheme } from "@/hooks/use-theme";
 import { cn } from "@/lib/utils";
 import { TooltipButton } from "./tooltip-button";
 
-export function ModeToggle() {
+export const ThemeToggle: React.FC = () => {
   const { theme, setTheme } = useTheme();
 
   // Determine which theme is active
@@ -61,4 +61,4 @@ export function ModeToggle() {
       </DropdownMenuContent>
     </DropdownMenu>
   );
-}
+};
