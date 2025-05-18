@@ -95,18 +95,16 @@ function App() {
           <Route path="search" element={<Search />} />
           <Route path="toaster" element={<Toaster />} />
         </Route>
-        <Route path="resizable-shell">
-          <Route
-            index
-            element={
-              <ResizableShellLayout
-                leftPanelContent={isMobile ? null : <ScrollAreaDemo />}
-                middlePanelContent={<ScrollAreaDemo />}
-                rightPanelContent={isMobile ? null : <ScrollAreaDemo />}
-              />
-            }
-          />
-        </Route>
+        <Route
+          path="resizable-shell"
+          element={
+            <ResizableShellLayout
+              leftPanelContent={isMobile ? null : <ScrollAreaDemo />}
+              middlePanelContent={<ScrollAreaDemo />}
+              rightPanelContent={isMobile ? null : <ScrollAreaDemo />}
+            />
+          }
+        />
       </Routes>
     </BaseLayout>
   );
