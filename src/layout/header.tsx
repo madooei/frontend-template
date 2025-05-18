@@ -1,4 +1,4 @@
-import { ModeToggle } from "@/components/theme-toggle";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Link } from "react-router";
 
@@ -12,7 +12,7 @@ export function Header() {
             <p className="font-bold">Frontend Template</p>
           </Link>
         </div>
-        <ModeToggle />
+        <ThemeToggle />
       </div>
     </header>
   );

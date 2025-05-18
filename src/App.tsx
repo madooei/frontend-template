@@ -2,6 +2,8 @@ import { Suspense, lazy } from "react";
 import { Routes, Route } from "react-router";
 import BaseLayout from "@/layout/base";
 import ShellLayout from "@/layout/shell";
+import ResizableShellLayout from "@/layout/resizable-shell";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 // Lazy load all page components
 const HomePage = lazy(() => import("@/pages/home-page"));
@@ -13,6 +15,7 @@ const MessagePage = lazy(() => import("@/pages/message-page"));
 const InboxPage = lazy(() => import("@/pages/inbox-page"));
 const SearchPage = lazy(() => import("@/pages/search-page"));
 const ToasterPage = lazy(() => import("@/pages/toaster-page"));
+const ScrollAreaDemoPage = lazy(() => import("@/pages/scroll-area-demo"));
 
 // Loading component for Suspense fallback
 const LoadingFallback = ({ className }: { className?: string }) => (
@@ -68,7 +71,15 @@ const Toaster = () => (
   </Suspense>
 );
 
+const ScrollAreaDemo = () => (
+  <Suspense fallback={<LoadingFallback />}>
+    <ScrollAreaDemoPage />
+  </Suspense>
+);
+
 function App() {
+  const isMobile = useIsMobile();
+
   return (
     <BaseLayout>
       <Routes>
@@ -83,6 +94,18 @@ function App() {
           </Route>
           <Route path="search" element={<Search />} />
           <Route path="toaster" element={<Toaster />} />
+        </Route>
+        <Route path="resizable-shell">
+          <Route
+            index
+            element={
+              <ResizableShellLayout
+                leftPanelContent={isMobile ? null : <ScrollAreaDemo />}
+                middlePanelContent={<ScrollAreaDemo />}
+                rightPanelContent={isMobile ? null : <ScrollAreaDemo />}
+              />
+            }
+          />
         </Route>
       </Routes>
     </BaseLayout>
