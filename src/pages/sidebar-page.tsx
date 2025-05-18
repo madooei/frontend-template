@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/sidebar";
 import {
   BellIcon,
+  Grid2X2Icon,
   HomeIcon,
   InboxIcon,
   InfoIcon,
@@ -47,6 +48,11 @@ const pages = [
     path: "/toaster",
     label: "Toaster",
     icon: BellIcon,
+  },
+  {
+    path: "/resizable-shell",
+    label: "Resizable Shell",
+    icon: Grid2X2Icon,
   },
 ];
 
