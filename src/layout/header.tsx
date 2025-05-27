@@ -1,5 +1,6 @@
 import { ThemeToggle } from "@/components/theme-toggle";
 import { SidebarTrigger } from "@/components/ui/sidebar";
+import ThemePresetSelector from "@/theme/theme-preset-selector";
 import { Link } from "react-router";
 
 export function Header() {
@@ -12,7 +13,10 @@ export function Header() {
             <p className="font-bold">Frontend Template</p>
           </Link>
         </div>
-        <ThemeToggle />
+        <div className="flex items-center gap-2">
+          <ThemePresetSelector />
+          <ThemeToggle />
+        </div>
       </div>
     </header>
   );
