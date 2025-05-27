@@ -1,6 +1,6 @@
 import { ThemeToggle } from "@/components/theme-toggle";
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import ThemePresetSelector from "@/theme/theme-preset-selector";
+import ThemePresetSelector from "@/components/theme-preset-selector";
 import { Link } from "react-router";
 
 export function Header() {

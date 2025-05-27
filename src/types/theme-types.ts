@@ -65,5 +65,5 @@ export interface ThemePreset {
 export interface ThemeState {
   preset: string;
   styles: ThemeStyles;
-  currentMode: ThemeMode;
+  currentMode: "light" | "dark";
 }
