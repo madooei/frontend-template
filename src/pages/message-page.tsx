@@ -22,7 +22,7 @@ const MessagePage: React.FC = () => {
     <div className="p-8">
       <h2 className="text-xl mb-4">Message {messageId}</h2>
       <p>This is the message page.</p>
-      <i>{data.message}</i>
+      <em>{data.message}</em>
     </div>
   );
 };
