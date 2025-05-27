@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { $theme, setTheme as setNanostoreTheme } from "@/stores/theme-store";
-import type { ThemeMode } from "@/types/theme-types";
 import { useStore } from "@nanostores/react";
 
 const DEBUG = false;
@@ -15,7 +14,7 @@ function logger(...args: unknown[]) {
 
 export const useTheme = () => {
   const currentStoreTheme = useStore($theme); // 'light', 'dark', or 'system'
-  const [resolvedTheme, setResolvedTheme] = useState<ThemeMode>(() => {
+  const [resolvedTheme, setResolvedTheme] = useState<"light" | "dark">(() => {
     // Initialize resolvedTheme correctly based on the initial store theme
     if (currentStoreTheme === "system") {
       if (IS_CLIENT) {
@@ -27,7 +26,8 @@ export const useTheme = () => {
       // Defaulting to 'light' is a common choice.
       return "light";
     }
-    return currentStoreTheme; // 'light' or 'dark'
+    // When currentStoreTheme is 'light' or 'dark', it's directly assignable to "light" | "dark"
+    return currentStoreTheme;
   });
 
   useEffect(() => {
