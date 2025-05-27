@@ -1,5 +1,5 @@
 import { Suspense, lazy } from "react";
-import { Routes, Route } from "react-router";
+import { RouterProvider, createBrowserRouter } from "react-router";
 import BaseLayout from "@/layout/base";
 import ShellLayout from "@/layout/shell";
 import ResizableShellLayout from "@/layout/resizable-shell";
@@ -77,35 +77,53 @@ const ScrollAreaDemo = () => (
   </Suspense>
 );
 
-function App() {
+const ResizableComponent = () => {
   const isMobile = useIsMobile();
 
   return (
+    <ResizableShellLayout
+      leftPanelContent={isMobile ? null : <ScrollAreaDemo />}
+      middlePanelContent={<ScrollAreaDemo />}
+      rightPanelContent={isMobile ? null : <ScrollAreaDemo />}
+    />
+  );
+};
+
+const router = createBrowserRouter([
+  {
+    Component: ShellLayout,
+    children: [
+      { index: true, Component: Home },
+      { path: "about", Component: About },
+      {
+        path: "messages",
+        children: [
+          { index: true, Component: Inbox },
+          {
+            path: ":messageId",
+            loader: async ({ params }) => {
+              // Route loaders provide data to route components before they are rendered
+              return {
+                message: `Message ${params.messageId} from the loader!`,
+              };
+            },
+            Component: Message,
+          },
+        ],
+      },
+      { path: "search", Component: Search },
+      { path: "toaster", Component: Toaster },
+    ],
+  },
+  { path: "/resizable-shell", Component: ResizableComponent },
+  { path: "/login", Component: Login },
+  { path: "*", Component: NotFound },
+]);
+
+function App() {
+  return (
     <BaseLayout>
-      <Routes>
-        <Route path="login" element={<Login />} />
-        <Route path="*" element={<NotFound />} />
-        <Route element={<ShellLayout />}>
-          <Route index element={<Home />} />
-          <Route path="about" element={<About />} />
-          <Route path="messages">
-            <Route index element={<Inbox />} />
-            <Route path=":messageId" element={<Message />} />
-          </Route>
-          <Route path="search" element={<Search />} />
-          <Route path="toaster" element={<Toaster />} />
-        </Route>
-        <Route
-          path="resizable-shell"
-          element={
-            <ResizableShellLayout
-              leftPanelContent={isMobile ? null : <ScrollAreaDemo />}
-              middlePanelContent={<ScrollAreaDemo />}
-              rightPanelContent={isMobile ? null : <ScrollAreaDemo />}
-            />
-          }
-        />
-      </Routes>
+      <RouterProvider router={router} />
     </BaseLayout>
   );
 }
