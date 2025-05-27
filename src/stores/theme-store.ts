@@ -1,17 +1,17 @@
 import { persistentAtom } from "@nanostores/persistent";
-import type { Theme } from "@/types/theme-types";
+import type { ThemeMode } from "@/types/theme-types";
 
 const DEBUG = false;
 
 const defaultTheme = "system";
 const storageKey = "vite-ui-theme";
 
-export const $theme = persistentAtom<Theme>(storageKey, defaultTheme, {
+export const $theme = persistentAtom<ThemeMode>(storageKey, defaultTheme, {
   encode: JSON.stringify,
   decode: JSON.parse,
 });
 
-export function setTheme(newTheme: Theme) {
+export function setTheme(newTheme: ThemeMode) {
   $theme.set(newTheme);
 }
 
