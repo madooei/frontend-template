@@ -7,8 +7,8 @@ import App from "./App.tsx";
 const root = document.getElementById("root");
 
 createRoot(root!).render(
-    <StrictMode>
-      <App />
-      <Toaster richColors position="bottom-right" />
-    </StrictMode>
+  <StrictMode>
+    <App />
+    <Toaster richColors position="bottom-right" />
+  </StrictMode>,
 );
