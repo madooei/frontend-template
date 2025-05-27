@@ -99,7 +99,16 @@ const router = createBrowserRouter([
         path: "messages",
         children: [
           { index: true, Component: Inbox },
-          { path: ":messageId", Component: Message },
+          {
+            path: ":messageId",
+            loader: async ({ params }) => {
+              // Route loaders provide data to route components before they are rendered
+              return {
+                message: `Message ${params.messageId} from the loader!`,
+              };
+            },
+            Component: Message,
+          },
         ],
       },
       { path: "search", Component: Search },
