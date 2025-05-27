@@ -4,7 +4,7 @@ import { useLoaderData, useParams } from "react-router";
 const MessagePage: React.FC = () => {
   const { messageId } = useParams();
   const [loading, setLoading] = useState(true);
-  const data = useLoaderData();
+  const data = useLoaderData<{ message: string }>();
 
   useEffect(() => {
     // simulate fetching a message from backend with a little delay
