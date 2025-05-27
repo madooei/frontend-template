@@ -1,4 +1,4 @@
-import type { ThemePreset } from "../theme-types";
+import type { ThemePreset } from "@/types/theme-types";
 
 import { amberMinimal } from "./amber-minimal";
 import { amethystHaze } from "./amethyst-haze";

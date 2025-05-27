@@ -34,7 +34,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
-import type { ThemeMode } from "./theme-types";
+import type { ThemeMode } from "@/types/theme-types";
 import { TooltipButton } from "@/components/tooltip-button";
 
 interface ThemePresetSelectorProps extends React.ComponentProps<typeof Button> {

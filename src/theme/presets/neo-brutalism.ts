@@ -1,4 +1,4 @@
-import type { ThemePreset } from "../theme-types";
+import type { ThemePreset } from "@/types/theme-types";
 
 export const neoBrutalism: ThemePreset = {
   label: "Neo Brutalism",

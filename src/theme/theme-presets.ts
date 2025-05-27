@@ -1,4 +1,4 @@
-import type { ThemePreset } from "./theme-types.ts";
+import type { ThemePreset } from "@/types/theme-types";
 import { allPresets } from "./presets";
 
 // Export the presets

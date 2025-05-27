@@ -1,4 +1,4 @@
-import type { ThemePreset } from "../theme-types";
+import type { ThemePreset } from "@/types/theme-types";
 
 export const t3Chat: ThemePreset = {
   label: "T3 Chat",

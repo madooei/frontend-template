@@ -1,4 +1,4 @@
-import type { ThemePreset } from "../theme-types";
+import type { ThemePreset } from "@/types/theme-types";
 
 export const defaultBlue: ThemePreset = {
   label: "Default Blue",

@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import type { ThemeMode, ThemePreset, ThemeState } from "./theme-types";
+import type { ThemeMode, ThemePreset, ThemeState } from "@/types/theme-types";
 
 export type Coords = { x: number; y: number };
 

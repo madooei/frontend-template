@@ -1,5 +1,5 @@
 import { type ReactNode, useEffect, useMemo, useState } from "react";
-import type { ThemeMode, ThemePreset, ThemeState } from "./theme-types";
+import type { ThemeMode, ThemePreset, ThemeState } from "@/types/theme-types";
 import {
   defaultPresets,
   getDefaultPresetKey,

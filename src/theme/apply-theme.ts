@@ -1,4 +1,8 @@
-import type { ThemeState, ThemeStyleProps, ThemeStyles } from "./theme-types";
+import type {
+  ThemeState,
+  ThemeStyleProps,
+  ThemeStyles,
+} from "@/types/theme-types";
 
 // Convert color to HSL format
 export function colorToHsl(color: string): string {
