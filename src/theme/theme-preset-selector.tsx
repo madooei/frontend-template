@@ -11,7 +11,7 @@ import {
   Sun,
 } from "lucide-react";
 
-import { useThemePreset } from "./use-theme-preset";
+import { useThemePreset } from "../hooks/use-theme-preset";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {

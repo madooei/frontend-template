@@ -1,5 +1,5 @@
 import { persistentAtom } from "@nanostores/persistent";
-import { defaultPresets, getDefaultPresetKey } from "./theme-presets";
+import { defaultPresets, getDefaultPresetKey } from "@/theme/theme-presets";
 import type { ThemePreset } from "@/types/theme-types";
 
 const DEBUG = false; // Can be toggled for debugging
@@ -51,4 +51,4 @@ if (DEBUG) {
 }
 
 // Export available presets for components that might need them (e.g., selectors)
-export { defaultPresets }; 
+export { defaultPresets };

@@ -1,22 +1,18 @@
 import { type ReactNode, useEffect, useMemo } from "react";
 import type { ThemeMode, ThemeState } from "@/types/theme-types";
-import {
-  getPresetThemeStyles,
-  defaultPresets,
-  getDefaultPresetKey,
-} from "./theme-presets";
-import { applyThemeToElement } from "./apply-theme";
+import { getPresetThemeStyles, defaultPresets } from "@/theme/theme-presets";
+import { applyThemeToElement } from "@/theme/apply-theme";
 import {
   ThemeContext,
   type Coords,
   type ThemeContextValue,
-} from "./theme-context";
+} from "@/contexts/theme-context";
 import { useTheme } from "@/hooks/use-theme";
 import { useStore } from "@nanostores/react";
 import {
   $themePreset,
   setThemePreset as setStorePreset,
-} from "./theme-preset-store";
+} from "@/stores/theme-preset-store";
 
 interface ThemeProviderProps {
   children: ReactNode;
@@ -39,7 +35,11 @@ export function ThemeProvider({
 
   useEffect(() => {
     const currentPersistedPreset = $themePreset.get();
-    if (defaultPreset && defaultPreset !== currentPersistedPreset && !localStorage.getItem("app-theme-preset")) {
+    if (
+      defaultPreset &&
+      defaultPreset !== currentPersistedPreset &&
+      !localStorage.getItem("app-theme-preset")
+    ) {
       if (defaultPresets[defaultPreset]) {
         setStorePreset(defaultPreset);
       } else {
@@ -92,9 +92,12 @@ export function ThemeProvider({
 
   useEffect(() => {
     if (defaultTheme && !localStorage.getItem("vite-ui-theme")) {
-      if (defaultTheme !== 'system' && currentThemePreference === 'system') {
+      if (defaultTheme !== "system" && currentThemePreference === "system") {
         setNanostoreTheme(defaultTheme);
-      } else if (defaultTheme !== 'system' && currentThemePreference !== defaultTheme) {
+      } else if (
+        defaultTheme !== "system" &&
+        currentThemePreference !== defaultTheme
+      ) {
         setNanostoreTheme(defaultTheme);
       }
     }

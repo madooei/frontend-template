@@ -2,8 +2,8 @@ import "@/styles/index.css"; // Keep this line at the top so richColors can be u
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { Toaster } from "@/components/ui/sonner";
+import { ThemeProvider } from "@/providers/theme-provider.tsx";
 import App from "./App.tsx";
-import { ThemeProvider } from "./theme/theme-provider.tsx";
 
 const root = document.getElementById("root");
 
