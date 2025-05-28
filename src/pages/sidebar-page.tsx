@@ -22,6 +22,7 @@ import {
   LogOutIcon,
   SearchIcon,
 } from "lucide-react";
+import { Icons } from "@/components/icons";
 
 const pages = [
   {
@@ -53,6 +54,11 @@ const pages = [
     path: "/resizable-shell",
     label: "Resizable Shell",
     icon: Grid2X2Icon,
+  },
+  {
+    path: "/cards-demo",
+    label: "Cards Demo",
+    icon: Icons.logo,
   },
 ];
 

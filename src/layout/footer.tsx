@@ -1,4 +1,4 @@
-import { GitHubLogo } from "@/components/logos/github-logo";
+import { Icons } from "@/components/icons";
 
 export function Footer() {
   return (
@@ -23,7 +23,7 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  <GitHubLogo className="h-5 w-5" />
+                  <Icons.gitHub className="h-5 w-5" />
                   <span className="sr-only">GitHub</span>
                 </a>
               </div>

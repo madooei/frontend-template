@@ -16,6 +16,7 @@ const InboxPage = lazy(() => import("@/pages/inbox-page"));
 const SearchPage = lazy(() => import("@/pages/search-page"));
 const ToasterPage = lazy(() => import("@/pages/toaster-page"));
 const ScrollAreaDemoPage = lazy(() => import("@/pages/scroll-area-demo"));
+const CardsDemoPage = lazy(() => import("@/pages/cards-demo-page"));
 
 // Loading component for Suspense fallback
 const LoadingFallback = ({ className }: { className?: string }) => (
@@ -77,6 +78,12 @@ const ScrollAreaDemo = () => (
   </Suspense>
 );
 
+const CardsDemo = () => (
+  <Suspense fallback={<LoadingFallback />}>
+    <CardsDemoPage />
+  </Suspense>
+);
+
 const ResizableComponent = () => {
   const isMobile = useIsMobile();
 
@@ -113,6 +120,7 @@ const router = createBrowserRouter([
       },
       { path: "search", Component: Search },
       { path: "toaster", Component: Toaster },
+      { path: "/cards-demo", Component: CardsDemo },
     ],
   },
   { path: "/resizable-shell", Component: ResizableComponent },
