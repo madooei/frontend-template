@@ -14,6 +14,7 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import {
+  ALargeSmallIcon,
   BellIcon,
   Grid2X2Icon,
   HomeIcon,
@@ -59,6 +60,11 @@ const pages = [
     path: "/cards-demo",
     label: "Cards Demo",
     icon: Icons.logo,
+  },
+  {
+    path: "/typography",
+    label: "Typography",
+    icon: ALargeSmallIcon,
   },
 ];
 
