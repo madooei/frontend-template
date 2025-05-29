@@ -6,7 +6,7 @@ const Typography = ({
   className,
 }: PropsWithChildren<{ className?: string }>) => {
   return (
-    <div className={cn("prose prose-shadcn dark:prose-invert", className)}>
+    <div className={cn("prose prose-shadcn dark:prose-invert mx-auto py-8", className)}>
       {children}
     </div>
   );
