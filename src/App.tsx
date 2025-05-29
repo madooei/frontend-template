@@ -120,7 +120,7 @@ const router = createBrowserRouter([
       },
       { path: "search", Component: Search },
       { path: "toaster", Component: Toaster },
-      { path: "/cards-demo", Component: CardsDemo },
+      { path: "cards-demo", Component: CardsDemo },
     ],
   },
   { path: "/resizable-shell", Component: ResizableComponent },
