@@ -9,7 +9,7 @@ const root = document.getElementById("root");
 
 createRoot(root!).render(
   <StrictMode>
-    <ThemeProvider>
+    <ThemeProvider defaultPreset="default-neutral">
       <App />
       <Toaster richColors position="bottom-right" />
     </ThemeProvider>
