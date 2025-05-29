@@ -13,6 +13,7 @@ import {
   $themePreset,
   setThemePreset as setStorePreset,
 } from "@/stores/theme-preset-store";
+import { $theme } from "@/stores/theme-store";
 
 interface ThemeProviderProps {
   children: ReactNode;
@@ -34,17 +35,14 @@ export function ThemeProvider({
   const currentPresetKey = useStore($themePreset);
 
   useEffect(() => {
-    const currentPersistedPreset = $themePreset.get();
-    if (
-      defaultPreset &&
-      defaultPreset !== currentPersistedPreset &&
-      !localStorage.getItem("app-theme-preset")
-    ) {
-      if (defaultPresets[defaultPreset]) {
+    if (defaultPreset) {
+      const currentPreset = $themePreset.get();
+      if (defaultPresets[defaultPreset] && defaultPreset !== currentPreset) {
         setStorePreset(defaultPreset);
-      } else {
+      } else if (!defaultPresets[defaultPreset]) {
         console.warn(
-          `ThemeProvider: defaultPreset "${defaultPreset}" is not a valid preset key. Ignoring.`,
+          `ThemeProvider: defaultPreset "${defaultPreset}" is not a valid preset key. Available presets:`,
+          Object.keys(defaultPresets),
         );
       }
     }
@@ -91,17 +89,15 @@ export function ThemeProvider({
   }, [themeState]);
 
   useEffect(() => {
-    if (defaultTheme && !localStorage.getItem("vite-ui-theme")) {
-      if (defaultTheme !== "system" && currentThemePreference === "system") {
+    if (defaultTheme) {
+      const currentTheme = $theme.get();
+      if (defaultTheme !== "system" && currentTheme === "system") {
         setNanostoreTheme(defaultTheme);
-      } else if (
-        defaultTheme !== "system" &&
-        currentThemePreference !== defaultTheme
-      ) {
+      } else if (defaultTheme !== "system" && currentTheme !== defaultTheme) {
         setNanostoreTheme(defaultTheme);
       }
     }
-  }, [defaultTheme, currentThemePreference, setNanostoreTheme]);
+  }, [defaultTheme, setNanostoreTheme]);
 
   const value: ThemeContextValue = {
     theme: currentThemePreference,
