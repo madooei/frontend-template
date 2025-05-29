@@ -4,7 +4,7 @@ import type { ThemeMode } from "@/types/theme-types";
 const DEBUG = false;
 
 const defaultTheme = "system";
-const storageKey = "vite-ui-theme";
+const storageKey = "app-theme-mode";
 
 export const $theme = persistentAtom<ThemeMode>(storageKey, defaultTheme, {
   encode: JSON.stringify,
