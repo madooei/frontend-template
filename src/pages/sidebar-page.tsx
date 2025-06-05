@@ -20,6 +20,7 @@ import {
   HomeIcon,
   InboxIcon,
   InfoIcon,
+  ListIcon,
   LogOutIcon,
   SearchIcon,
 } from "lucide-react";
@@ -65,6 +66,11 @@ const pages = [
     path: "/typography",
     label: "Typography",
     icon: ALargeSmallIcon,
+  },
+  {
+    path: "/todos",
+    label: "Todos",
+    icon: ListIcon,
   },
 ];
 
