@@ -146,8 +146,8 @@ const ThemePresetSelector: React.FC<ThemePresetSelectorProps> = ({
         <PopoverContent className="w-[300px] p-0" align="center">
           <Command className="h-100 w-full rounded-lg border shadow-md">
             <div className="flex w-full items-center">
-              <div className="flex w-full items-center border-b px-3 py-1">
-                <Search className="size-4 shrink-0 opacity-50" />
+              <div className="flex w-full items-center border-b p-1">
+                <Search className="size-4 shrink-0 opacity-50 ml-2 mr-3" />
                 <Input
                   placeholder="Search themes..."
                   className="border-0 shadow-none focus-visible:ring-0 focus-visible:ring-offset-0"
@@ -156,7 +156,7 @@ const ThemePresetSelector: React.FC<ThemePresetSelectorProps> = ({
                 />
               </div>
             </div>
-            <div className="flex items-center justify-between px-4 py-2">
+            <div className="flex items-center justify-between pl-3 pr-1 py-2">
               <div className="text-muted-foreground text-xs">
                 {filteredPresets.length} theme
                 {filteredPresets.length !== 1 ? "s" : ""}
@@ -166,7 +166,7 @@ const ThemePresetSelector: React.FC<ThemePresetSelectorProps> = ({
             <Separator />
             <ScrollArea className="h-[500px] max-h-[70vh]">
               <CommandEmpty>No themes found.</CommandEmpty>
-              <CommandGroup heading="Themes">
+              <CommandGroup heading="Themes" className="mb-4">
                 {filteredPresets.map((presetName, index) => (
                   <CommandItem
                     key={`${presetName}-${index}`}
