@@ -1,6 +1,22 @@
 {
   "todos": [
-    { "id": 1, "title": "Buy milk" },
-    { "id": 2, "title": "Buy bread" }
+    {
+      "id": "1",
+      "title": "Buy milk"
+    },
+    {
+      "id": "2",
+      "title": "Buy bread"
+    }
+  ],
+  "posts": [
+    {
+      "id": "1",
+      "text": "Hello world"
+    },
+    {
+      "id": "2",
+      "text": "This is a post"
+    }
   ]
 }
