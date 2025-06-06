@@ -5,6 +5,11 @@ import ShellLayout from "@/layout/shell";
 import ResizableShellLayout from "@/layout/resizable-shell";
 import { useIsMobile } from "@/hooks/use-mobile";
 
+import {
+  loader as postsLoader,
+  action as postsAction,
+} from "@/pages/posts-page";
+
 // Lazy load all page components
 const HomePage = lazy(() => import("@/pages/home-page"));
 const AboutPage = lazy(() => import("@/pages/about-page"));
@@ -20,6 +25,7 @@ const CardsDemoPage = lazy(() => import("@/pages/cards-demo-page"));
 const TypographyPage = lazy(() => import("@/pages/typography-page"));
 const SidebarTestPage = lazy(() => import("@/pages/sidebar-test-page"));
 const TodosPage = lazy(() => import("@/pages/todos-page"));
+const PostsPage = lazy(() => import("@/pages/posts-page"));
 
 // Loading component for Suspense fallback
 const LoadingFallback = ({ className }: { className?: string }) => (
@@ -105,6 +111,12 @@ const Todos = () => (
   </Suspense>
 );
 
+const Posts = () => (
+  <Suspense fallback={<LoadingFallback />}>
+    <PostsPage />
+  </Suspense>
+);
+
 const ResizableComponent = () => {
   const isMobile = useIsMobile();
 
@@ -144,6 +156,13 @@ const router = createBrowserRouter([
       { path: "cards-demo", Component: CardsDemo },
       { path: "typography", Component: Typography },
       { path: "todos", Component: Todos },
+      {
+        path: "posts",
+        Component: Posts,
+        loader: postsLoader,
+        action: postsAction,
+        HydrateFallback: () => null,
+      },
     ],
   },
   { path: "/resizable-shell", Component: ResizableComponent },
