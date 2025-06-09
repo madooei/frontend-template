@@ -11,6 +11,10 @@ export const $posts = persistentAtom<PostType[]>(storageKey, defaultPosts, {
   decode: JSON.parse,
 });
 
+export function setPosts(posts: PostType[]) {
+  $posts.set(posts);
+}
+
 export function addPost(post: PostType) {
   $posts.set([...$posts.get(), post]);
 }
