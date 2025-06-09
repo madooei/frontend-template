@@ -1,16 +1,13 @@
 import type { PostType } from "@/types/post-types";
-
-const API_URL = import.meta.env.VITE_API_URL;
-
-console.log("API_URL", API_URL);
+import { env } from "@/env";
 
 const getPosts = async (): Promise<PostType[]> => {
-  const response = await fetch(`${API_URL}/posts`);
+  const response = await fetch(`${env.API_URL}/posts`);
   return response.json();
 };
 
 const createPost = async (post: PostType): Promise<PostType> => {
-  const response = await fetch(`${API_URL}/posts`, {
+  const response = await fetch(`${env.API_URL}/posts`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
