@@ -1,16 +1,13 @@
 import type { TodoType } from "@/types/todo-types";
-
-const API_URL = import.meta.env.VITE_API_URL;
-
-console.log("API_URL", API_URL);
+import { env } from "@/env";
 
 const getTodos = async (): Promise<TodoType[]> => {
-  const response = await fetch(`${API_URL}/todos`);
+  const response = await fetch(`${env.API_URL}/todos`);
   return response.json();
 };
 
 const createTodo = async (todo: TodoType): Promise<TodoType> => {
-  const response = await fetch(`${API_URL}/todos`, {
+  const response = await fetch(`${env.API_URL}/todos`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
