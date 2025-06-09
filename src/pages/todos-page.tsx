@@ -1,35 +1,64 @@
-import { getTodos, createTodo } from "@/services/todos-api";
-import type { TodoType } from "@/types/todo-types";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
+import { Loader2, Plus } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useState } from "react";
-import { Loader2, Plus } from "lucide-react";
+import LoadingPage from "@/pages/loading-page";
+import EmptyPage from "@/pages/empty";
+
+import type { TodoType } from "@/types/todo-types";
+import { useCreateTodo, useTodos } from "@/hooks/use-todos-v1";
+import { toast } from "sonner";
 
 const TodosPage: React.FC = () => {
   const [newTodoTitle, setNewTodoTitle] = useState("");
-  const queryClient = useQueryClient();
-
-  const query = useQuery({ queryKey: ["todos"], queryFn: getTodos });
-
-  const mutation = useMutation({
-    mutationFn: createTodo,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["todos"] });
-      setNewTodoTitle("");
-    },
-  });
+  const { todos, isLoading, error: queryError } = useTodos();
+  const {
+    mutate,
+    isPending,
+    isSuccess,
+    error: mutationError,
+  } = useCreateTodo();
 
   const handleSubmit = (e: React.FormEvent) => {
+    // Prevent the default browser refresh
     e.preventDefault();
+    // Stop the event from bubbling up to parent components
+    e.stopPropagation();
+    
     if (!newTodoTitle.trim()) return;
 
-    mutation.mutate({
+    mutate({
       id: Date.now(),
       title: newTodoTitle.trim(),
     });
   };
+
+  // This useEffect handles side-effects for the QUERY
+  useEffect(() => {
+    if (queryError) {
+      toast.error("An error occurred while fetching todos.", {
+        description: queryError.message,
+      });
+    }
+  }, [queryError]);
+
+  // This new useEffect handles side-effects for the MUTATION
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("Todo created successfully!");
+      setNewTodoTitle("");
+    }
+    if (mutationError) {
+      toast.error("Failed to create todo.", {
+        description: mutationError.message,
+      });
+    }
+  }, [isSuccess, mutationError]);
+
+  if (isLoading) {
+    return <LoadingPage />;
+  }
 
   return (
     <div className="container max-w-2xl py-8">
@@ -43,13 +72,10 @@ const TodosPage: React.FC = () => {
               placeholder="Add a new todo..."
               value={newTodoTitle}
               onChange={(e) => setNewTodoTitle(e.target.value)}
-              disabled={mutation.isPending}
+              disabled={isPending}
             />
-            <Button
-              type="submit"
-              disabled={mutation.isPending || !newTodoTitle.trim()}
-            >
-              {mutation.isPending ? (
+            <Button type="submit" disabled={isPending || !newTodoTitle.trim()}>
+              {isPending ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
               ) : (
                 <Plus className="h-4 w-4" />
@@ -58,31 +84,19 @@ const TodosPage: React.FC = () => {
             </Button>
           </form>
 
-          {query.isLoading ? (
-            <div className="flex justify-center py-4">
-              <Loader2 className="h-6 w-6 animate-spin" />
-            </div>
-          ) : query.isError ? (
-            <div className="text-destructive text-center py-4">
-              Error loading todos. Please try again.
-            </div>
-          ) : (
-            <ul className="space-y-2">
-              {query.data?.map((todo: TodoType) => (
-                <li
-                  key={todo.id}
-                  className="flex items-center justify-between p-3 rounded-lg border bg-card"
-                >
-                  <span>{todo.title}</span>
-                </li>
-              ))}
-              {query.data?.length === 0 && (
-                <li className="text-center text-muted-foreground py-4">
-                  No todos yet. Add one above!
-                </li>
-              )}
-            </ul>
-          )}
+          <ul className="space-y-2">
+            {todos?.map((todo: TodoType) => (
+              <li
+                key={todo.id}
+                className="flex items-center justify-between p-3 rounded-lg border bg-card"
+              >
+                <span>{todo.title}</span>
+              </li>
+            ))}
+            {todos?.length === 0 && (
+              <EmptyPage message={"No todos yet. Add one above!"} />
+            )}
+          </ul>
         </CardContent>
       </Card>
     </div>
