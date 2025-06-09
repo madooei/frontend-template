@@ -11,6 +11,10 @@ export const $todos = persistentAtom<TodoType[]>(storageKey, defaultTodos, {
   decode: JSON.parse,
 });
 
+export const setTodos = (todos: TodoType[]) => {
+  $todos.set(todos);
+};
+
 export function addTodo(todo: TodoType) {
   $todos.set([...$todos.get(), todo]);
 }
