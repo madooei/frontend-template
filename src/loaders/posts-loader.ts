@@ -6,6 +6,6 @@ export async function loader() {
 
   // In case you want to cache the data in the store, you can do it here.
   setPosts(posts);
-  
+
   return { posts };
 }

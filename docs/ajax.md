@@ -622,13 +622,13 @@ Notice we have a `loader` function that fetches the items from the server. This 
 
 ```tsx
 import { createBrowserRouter } from "react-router";
-import { ItemsPage, loader as itemsLoader } from "./items-page"; 
+import { ItemsPage, loader as itemsLoader } from "./items-page";
 
 createBrowserRouter([
-  { 
-    path: "/items", 
+  {
+    path: "/items",
     Component: ItemsPage,
-    loader: itemsLoader
+    loader: itemsLoader,
   },
 ]);
 ```
@@ -637,7 +637,7 @@ Loaders are invoked by React Router before the corresponding route component is 
 
 You can perform any side effects in the `loader` function. For instance, I used `setItemsInStore` to cache the data in a global store. As such, I could use `const items = useStore($items);` in the `ItemsPage` component to access the items from the store instead of fetching them again instead of `useLoaderData`.
 
-Now, let's add the ability to create a new item using a form. 
+Now, let's add the ability to create a new item using a form.
 
 ```tsx
 import { useLoaderData, Form } from "react-router";
@@ -678,15 +678,15 @@ Now update the router object to include the action for the `ItemsPage`:
 
 ```tsx
 import { createBrowserRouter } from "react-router";
-import { 
-  ItemsPage, 
+import {
+  ItemsPage,
   loader as itemsLoader
-  action as itemsAction 
-} from "./items-page"; 
+  action as itemsAction
+} from "./items-page";
 
 createBrowserRouter([
-  { 
-    path: "/items", 
+  {
+    path: "/items",
     Component: ItemsPage,
     loader: itemsLoader,
     action: itemsAction
@@ -698,7 +698,7 @@ The `action` function is called when the form is submitted. It receives the `req
 
 Notice I used a `Form` component from React Router, which is similar to the native HTML form but integrates with React Router's data handling. The `action` function is called when the form is submitted. It is possible to use the native HTML form instead, and invoke the `action` function through `useSubmit` or `useFetcher` hooks provided by React Router. See [this link](https://reactrouter.com/start/data/actions#calling-actions) for more details.
 
-If you pay attention to the `action` function, you will notice that I have not updated the store after creating a new item. This is because React Router will automatically refetch the data (call the loader) after the action is completed, so the items will be up-to-date in the component. 
+If you pay attention to the `action` function, you will notice that I have not updated the store after creating a new item. This is because React Router will automatically refetch the data (call the loader) after the action is completed, so the items will be up-to-date in the component.
 
 The `action` function must return something, even if it's just an empty object or null. This offers an opportunity to return additional data that can be used in the component, such as a success message or error information. You can access this data in the component using `useActionData`.
 

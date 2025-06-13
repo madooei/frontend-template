@@ -2,7 +2,7 @@
 // its data with the store.
 
 // react-query already stores the data in the cache, so we don't need to
-// use the store to manage the data. This is shown here for completeness, in 
+// use the store to manage the data. This is shown here for completeness, in
 // case you want to use the store for other things.
 
 import { useEffect } from "react";
@@ -39,16 +39,10 @@ export const useTodos = () => {
   };
 };
 
-
 export const useCreateTodo = () => {
   const queryClient = useQueryClient();
 
-  const {
-    mutate,
-    isPending,
-    isSuccess,
-    error
-  } = useMutation({
+  const { mutate, isPending, isSuccess, error } = useMutation({
     mutationFn: createTodo,
     onSuccess: (data) => {
       // Update the store directly for a more optimistic-feeling UI.

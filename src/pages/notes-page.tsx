@@ -6,7 +6,7 @@ const NotesPage: React.FC = () => {
   const { notes } = useLoaderData<{ notes: NoteType[] }>();
 
   return (
-    <Typography >
+    <Typography>
       <h3>Notes!</h3>
       <ul>
         {notes.map((note, index) => (

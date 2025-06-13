@@ -1,8 +1,5 @@
-import {
-  useLoaderData,
-  useFetcher, 
-} from "react-router";
-import { useEffect, useRef } from "react"; 
+import { useLoaderData, useFetcher } from "react-router";
+import { useEffect, useRef } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -12,7 +9,7 @@ import EmptyPage from "./empty";
 
 export const Component: React.FC = () => {
   const { posts } = useLoaderData() as { posts: PostType[] };
-  
+
   // Initialize the fetcher instead of useNavigation/useActionData
   const fetcher = useFetcher<{ error?: string; success?: boolean }>();
   const formRef = useRef<HTMLFormElement>(null);
