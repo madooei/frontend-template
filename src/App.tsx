@@ -4,18 +4,17 @@ import BaseLayout from "@/layout/base";
 import ShellLayout from "@/layout/shell";
 import ResizableShellLayout from "@/layout/resizable-shell";
 import { useIsMobile } from "@/hooks/use-mobile";
-
-import {
-  loader as postsLoader,
-  action as postsAction,
-} from "@/pages/posts-page";
+import LoadingPage from "@/pages/loading-page";
+import AddNotePage from "@/pages/add-note-page";
+import NotesPage from "@/pages/notes-page";
+import { loader as notesLoader } from "@/loaders/notes-loader";
+import { action as noteAction } from "@/actions/notes-action";
 
 // Lazy load all page components
 const HomePage = lazy(() => import("@/pages/home-page"));
 const AboutPage = lazy(() => import("@/pages/about-page"));
 const LoginPage = lazy(() => import("@/pages/login-page"));
 const NotFoundPage = lazy(() => import("@/pages/not-found-page"));
-const LoadingPage = lazy(() => import("@/pages/loading-page"));
 const MessagePage = lazy(() => import("@/pages/message-page"));
 const InboxPage = lazy(() => import("@/pages/inbox-page"));
 const SearchPage = lazy(() => import("@/pages/search-page"));
@@ -23,9 +22,7 @@ const ToasterPage = lazy(() => import("@/pages/toaster-page"));
 const ScrollAreaDemoPage = lazy(() => import("@/pages/scroll-area-demo"));
 const CardsDemoPage = lazy(() => import("@/pages/cards-demo-page"));
 const TypographyPage = lazy(() => import("@/pages/typography-page"));
-const SidebarTestPage = lazy(() => import("@/pages/sidebar-test-page"));
 const TodosPage = lazy(() => import("@/pages/todos-page"));
-const PostsPage = lazy(() => import("@/pages/posts-page"));
 
 // Loading component for Suspense fallback
 const LoadingFallback = ({ className }: { className?: string }) => (
@@ -99,21 +96,9 @@ const Typography = () => (
   </Suspense>
 );
 
-const SidebarTest = () => (
-  <Suspense fallback={<LoadingFallback />}>
-    <SidebarTestPage />
-  </Suspense>
-);
-
 const Todos = () => (
   <Suspense fallback={<LoadingFallback />}>
     <TodosPage />
-  </Suspense>
-);
-
-const Posts = () => (
-  <Suspense fallback={<LoadingFallback />}>
-    <PostsPage />
   </Suspense>
 );
 
@@ -158,16 +143,32 @@ const router = createBrowserRouter([
       { path: "todos", Component: Todos },
       {
         path: "posts",
-        Component: Posts,
-        loader: postsLoader,
-        action: postsAction,
-        HydrateFallback: () => null,
+        HydrateFallback: () => null, // Just to silence the warning (only needed if you do server-side rendering)
+        lazy: {
+          loader: async () => (await import("@/loaders/posts-loader")).loader,
+          action: async () => (await import("@/actions/posts-action")).action,
+          Component: async () => (await import("@/pages/posts-page")).Component,
+        },
+      },
+      {
+        path: "/notes",
+        children: [
+          {
+            index: true,
+            Component: NotesPage,
+            loader: notesLoader,
+          },
+          {
+            path: "new",
+            Component: AddNotePage,
+            action: noteAction,
+          },
+        ],
       },
     ],
   },
   { path: "/resizable-shell", Component: ResizableComponent },
   { path: "/login", Component: Login },
-  { path: "/sidebar-test", Component: SidebarTest },
   { path: "*", Component: NotFound },
 ]);
 
