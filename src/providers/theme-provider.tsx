@@ -14,6 +14,7 @@ import {
   setThemePreset as setStorePreset,
 } from "@/stores/theme-preset-store";
 import { $theme } from "@/stores/theme-store";
+import { allPresets } from "@/theme/presets";
 
 interface ThemeProviderProps {
   children: ReactNode;
@@ -37,7 +38,11 @@ export function ThemeProvider({
   useEffect(() => {
     if (defaultPreset) {
       const currentPreset = $themePreset.get();
-      if (defaultPresets[defaultPreset] && defaultPreset !== currentPreset) {
+      if (allPresets[currentPreset]) {
+        // if the preset is already set, don't change it
+        return;
+      }
+      if (defaultPresets[defaultPreset]) {
         setStorePreset(defaultPreset);
       } else if (!defaultPresets[defaultPreset]) {
         console.warn(

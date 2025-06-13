@@ -1,0 +1,11 @@
+{
+  "name": "mock-api",
+  "version": "1.0.0",
+  "description": "Mock API to play with TanStack Query",
+  "scripts": {
+    "start": "cp db.json.example db.json && npx json-server db.json --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
