@@ -18,5 +18,25 @@
       "id": "2",
       "text": "This is a post"
     }
+  ],
+  "notes": [
+    {
+      "id": "1",
+      "text": "This is a note"
+    },
+    {
+      "id": "2",
+      "text": "This is another note"
+    }
+  ],
+  "items": [
+    {
+      "id": "1",
+      "text": "This is an item"
+    },
+    {
+      "id": "2",
+      "text": "This is another item"
+    }
   ]
 }
