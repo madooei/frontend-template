@@ -1,49 +1,31 @@
 import {
   useLoaderData,
-  useActionData,
-  useNavigation,
-  Form,
+  useFetcher, 
 } from "react-router";
+import { useEffect, useRef } from "react"; 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Loader2, Plus } from "lucide-react";
 import type { PostType } from "@/types/post-types";
-import { getPosts, createPost } from "@/services/posts-api";
+import EmptyPage from "./empty";
 
-// This is our loader function that will be used by React Router
-export async function loader() {
-  const posts = await getPosts();
-  return { posts };
-}
-
-// This is our action function that will handle form submissions
-export async function action({ request }: { request: Request }) {
-  const formData = await request.formData();
-  const text = formData.get("text") as string;
-
-  if (!text?.trim()) {
-    return { error: "Post text is required" };
-  }
-
-  try {
-    const newPost = await createPost({
-      id: Date.now(),
-      text: text.trim(),
-    });
-    return { success: true, post: newPost };
-  } catch (error) {
-    return { error: "Failed to create post" };
-  }
-}
-
-const PostsPage: React.FC = () => {
+export const Component: React.FC = () => {
   const { posts } = useLoaderData() as { posts: PostType[] };
-  const actionData = useActionData() as
-    | { error?: string; success?: boolean }
-    | undefined;
-  const navigation = useNavigation();
-  const isSubmitting = navigation.state === "submitting";
+  
+  // Initialize the fetcher instead of useNavigation/useActionData
+  const fetcher = useFetcher<{ error?: string; success?: boolean }>();
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const isSubmitting = fetcher.state === "submitting";
+  const actionData = fetcher.data;
+
+  // 4. Add an effect to reset the form after a successful submission
+  useEffect(() => {
+    if (fetcher.state === "idle" && actionData?.success) {
+      formRef.current?.reset();
+    }
+  }, [fetcher.state, actionData]);
 
   return (
     <div className="container max-w-2xl py-8">
@@ -52,7 +34,8 @@ const PostsPage: React.FC = () => {
           <CardTitle className="text-2xl">Posts</CardTitle>
         </CardHeader>
         <CardContent>
-          <Form method="post" className="flex gap-2 mb-6">
+          {/* 3. Use fetcher.Form instead of the global Form */}
+          <fetcher.Form ref={formRef} method="post" className="flex gap-2 mb-6">
             <Input
               name="text"
               placeholder="Write a new post..."
@@ -68,13 +51,12 @@ const PostsPage: React.FC = () => {
               )}
               <span className="ml-2">Post</span>
             </Button>
-          </Form>
-
-          {actionData?.error && (
-            <div id="post-error" className="text-destructive text-sm mb-4">
-              {actionData.error}
-            </div>
-          )}
+            {actionData?.error && (
+              <div id="post-error" className="text-destructive text-sm mt-2">
+                {actionData.error}
+              </div>
+            )}
+          </fetcher.Form>
 
           <ul className="space-y-2">
             {posts.map((post) => (
@@ -86,9 +68,7 @@ const PostsPage: React.FC = () => {
               </li>
             ))}
             {posts.length === 0 && (
-              <li className="text-center text-muted-foreground py-4">
-                No posts yet. Write one above!
-              </li>
+              <EmptyPage message={"No posts yet. Write one above!"} />
             )}
           </ul>
         </CardContent>
@@ -96,5 +76,3 @@ const PostsPage: React.FC = () => {
     </div>
   );
 };
-
-export default PostsPage;
