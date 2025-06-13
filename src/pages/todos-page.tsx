@@ -7,7 +7,7 @@ import LoadingPage from "@/pages/loading-page";
 import EmptyPage from "@/pages/empty";
 
 import type { TodoType } from "@/types/todo-types";
-import { useCreateTodo, useTodos } from "@/hooks/use-todos-v1";
+import { useCreateTodo, useTodos } from "@/hooks/use-todos-v3";
 import { toast } from "sonner";
 
 const TodosPage: React.FC = () => {
@@ -20,12 +20,12 @@ const TodosPage: React.FC = () => {
     error: mutationError,
   } = useCreateTodo();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     // Prevent the default browser refresh
     e.preventDefault();
     // Stop the event from bubbling up to parent components
     e.stopPropagation();
-    
+
     if (!newTodoTitle.trim()) return;
 
     mutate({
@@ -56,10 +56,6 @@ const TodosPage: React.FC = () => {
     }
   }, [isSuccess, mutationError]);
 
-  if (isLoading) {
-    return <LoadingPage />;
-  }
-
   return (
     <div className="container max-w-2xl py-8">
       <Card className="mx-6">
@@ -83,7 +79,7 @@ const TodosPage: React.FC = () => {
               <span className="ml-2">Add</span>
             </Button>
           </form>
-
+          {isLoading && <LoadingPage />}
           <ul className="space-y-2">
             {todos?.map((todo: TodoType) => (
               <li
