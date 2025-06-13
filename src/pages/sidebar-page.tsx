@@ -24,6 +24,8 @@ import {
   LogOutIcon,
   MessageCircleCodeIcon,
   SearchIcon,
+  NotebookIcon,
+  NotebookPenIcon,
 } from "lucide-react";
 import { Icons } from "@/components/icons";
 
@@ -77,6 +79,16 @@ const pages = [
     path: "/posts",
     label: "Posts",
     icon: MessageCircleCodeIcon,
+  },
+  {
+    path: "/notes",
+    label: "Notes",
+    icon: NotebookIcon,
+  },
+  {
+    path: "/notes/new",
+    label: "Add Note",
+    icon: NotebookPenIcon,
   },
 ];
 
