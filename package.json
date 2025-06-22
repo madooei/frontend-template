@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
+    "@madooei/omni-themes": "^0.2.0",
     "@nanostores/logger": "^1.0.0",
     "@nanostores/persistent": "^1.0.0",
     "@nanostores/react": "^1.0.0",
