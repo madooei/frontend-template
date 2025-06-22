@@ -1,22 +1,20 @@
-import { persistentAtom } from "@nanostores/persistent";
-import type { ThemeMode } from "@/types/theme-types";
+import { createThemeStore } from '@madooei/omni-themes';
 
-const DEBUG = false;
-
-const defaultTheme = "system";
-const storageKey = "app-theme-mode";
-
-export const $theme = persistentAtom<ThemeMode>(storageKey, defaultTheme, {
-  encode: JSON.stringify,
-  decode: JSON.parse,
+// Create theme store using omni-themes with only light, dark, and system themes
+// to maintain the exact same UX as the original implementation
+export const {
+  themes,
+  $theme,
+  $resolvedTheme,
+  $systemTheme,
+  setTheme,
+  applyThemeScriptString,
+  createForcedThemeScriptString
+} = createThemeStore({
+  themes: ['light', 'dark'],
+  enableSystem: true,
+  enableColorScheme: true,
+  updateClassAttribute: true, // This will add classes to document.documentElement
+  dataAttributes: [], // Disable data attributes since shadcn uses classes
+  debug: false
 });
-
-export function setTheme(newTheme: ThemeMode) {
-  $theme.set(newTheme);
-}
-
-if (DEBUG) {
-  import("@nanostores/logger").then(({ logger }) => {
-    logger({ $theme });
-  });
-}
