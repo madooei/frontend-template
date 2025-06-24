@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { useTheme } from "@/hooks/use-theme";
-import { TooltipProvider } from "@/providers/tooltip-provider";
-import { cn } from "@/lib/utils";
+import { TooltipProvider } from "@madooei/shadcn-all-in-one/tooltip";
+import { cn } from "@madooei/shadcn-all-in-one/utils";
+import { Toaster } from "@madooei/shadcn-all-in-one/sonner";
 
 const DEBUG = false;
 
@@ -27,6 +28,7 @@ const BaseLayout: React.FC<BaseLayoutProps> = ({ children }) => {
       >
         {children}
       </div>
+      <Toaster richColors position="bottom-right" theme={resolvedTheme} />
     </TooltipProvider>
   );
 };

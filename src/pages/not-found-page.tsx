@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@madooei/shadcn-all-in-one/utils";
 import { DecoratedLink } from "@/components/decorated-link";
 
 const DEBUG = false;

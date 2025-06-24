@@ -1,5 +1,5 @@
 import { Icons } from "@/components/icons";
-import { Button } from "@/components/ui/button";
+import { Button } from "@madooei/shadcn-all-in-one/button";
 import {
   Card,
   CardContent,
@@ -7,9 +7,9 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+} from "@madooei/shadcn-all-in-one/card";
+import { Input } from "@madooei/shadcn-all-in-one/input";
+import { Label } from "@madooei/shadcn-all-in-one/label";
 
 export function CardsCreateAccount() {
   return (

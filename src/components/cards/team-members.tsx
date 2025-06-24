@@ -1,14 +1,18 @@
 import { ChevronDown } from "lucide-react";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@madooei/shadcn-all-in-one/avatar";
+import { Button } from "@madooei/shadcn-all-in-one/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "@madooei/shadcn-all-in-one/card";
 import {
   Command,
   CommandEmpty,
@@ -16,12 +20,12 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command";
+} from "@madooei/shadcn-all-in-one/command";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
+} from "@madooei/shadcn-all-in-one/popover";
 
 export function CardsTeamMembers() {
   return (

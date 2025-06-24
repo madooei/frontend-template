@@ -1,6 +1,6 @@
 import * as React from "react";
 import SidebarPage from "@/pages/sidebar-page";
-import { SidebarProvider } from "@/providers/sidebar-provider";
+import { SidebarProvider } from "@madooei/shadcn-all-in-one/sidebar";
 
 interface WithSidebarLayoutProps {
   children: React.ReactNode;

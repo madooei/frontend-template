@@ -1,7 +1,7 @@
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { Button } from "@madooei/shadcn-all-in-one/button";
+import { cn } from "@madooei/shadcn-all-in-one/utils";
 
 const DEBUG = false;
 

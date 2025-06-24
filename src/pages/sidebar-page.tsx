@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@madooei/shadcn-all-in-one/utils";
 import { NavLink } from "react-router";
 
 import {
@@ -12,7 +12,7 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
   SidebarRail,
-} from "@/components/ui/sidebar";
+} from "@madooei/shadcn-all-in-one/sidebar";
 import {
   ALargeSmallIcon,
   BellIcon,

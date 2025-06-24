@@ -1,7 +1,7 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { useNavigate } from "react-router";
+import { Button } from "@madooei/shadcn-all-in-one/button";
+import { Input } from "@madooei/shadcn-all-in-one/input";
+import { Label } from "@madooei/shadcn-all-in-one/label";
 import SearchResults from "./search-result-page";
 
 const SearchPage: React.FC = () => {

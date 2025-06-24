@@ -1,5 +1,5 @@
-import { GitHubLogo } from "@/components/logos/github-logo";
-import { cn } from "@/lib/utils";
+import { Icons } from "@madooei/shadcn-all-in-one/icons";
+import { cn } from "@madooei/shadcn-all-in-one/utils";
 
 const DEBUG = false;
 
@@ -19,7 +19,7 @@ const Footer: React.FC = () => {
         rel="noopener noreferrer"
         className="text-muted-foreground hover:text-foreground transition-colors"
       >
-        <GitHubLogo className="h-4 w-4" />
+        <Icons.gitHub className="h-4 w-4" />
         <span className="sr-only">GitHub</span>
       </a>
     </footer>

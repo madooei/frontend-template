@@ -1,5 +1,5 @@
 import { Icons } from "@/components/icons";
-import { Button } from "@/components/ui/button";
+import { Button } from "@madooei/shadcn-all-in-one/button";
 import {
   Card,
   CardContent,
@@ -7,17 +7,20 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+} from "@madooei/shadcn-all-in-one/card";
+import { Input } from "@madooei/shadcn-all-in-one/input";
+import { Label } from "@madooei/shadcn-all-in-one/label";
+import {
+  RadioGroup,
+  RadioGroupItem,
+} from "@madooei/shadcn-all-in-one/radio-group";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from "@madooei/shadcn-all-in-one/select";
 
 export function CardsPaymentMethod() {
   return (

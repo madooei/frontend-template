@@ -2,30 +2,30 @@ import React, { useCallback, useMemo, useState } from "react";
 import { Check, PaletteIcon, Search, Shuffle } from "lucide-react";
 
 import { useThemePreset } from "@/hooks/use-theme-preset";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { Badge } from "@madooei/shadcn-all-in-one/badge";
+import { Button } from "@madooei/shadcn-all-in-one/button";
 import {
   Command,
   CommandEmpty,
   CommandGroup,
   CommandItem,
-} from "@/components/ui/command";
-import { Input } from "@/components/ui/input";
+} from "@madooei/shadcn-all-in-one/command";
+import { Input } from "@madooei/shadcn-all-in-one/input";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Separator } from "@/components/ui/separator";
+} from "@madooei/shadcn-all-in-one/popover";
+import { ScrollArea } from "@madooei/shadcn-all-in-one/scroll-area";
+import { Separator } from "@madooei/shadcn-all-in-one/separator";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { TooltipButton } from "@/components/tooltip-button";
+} from "@madooei/shadcn-all-in-one/tooltip";
+import { TooltipButton } from "@madooei/shadcn-all-in-one/tooltip-button";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { cn } from "@/lib/utils";
+import { cn } from "@madooei/shadcn-all-in-one/utils";
 
 // Convert interface to type alias
 type ThemePresetSelectorProps = React.ComponentProps<typeof Button>;

@@ -1,6 +1,6 @@
 import { Form } from "react-router";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@madooei/shadcn-all-in-one/button";
+import { Textarea } from "@madooei/shadcn-all-in-one/textarea";
 
 const AddNotePage: React.FC = () => {
   return (
