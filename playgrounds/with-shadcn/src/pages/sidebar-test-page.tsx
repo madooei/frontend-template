@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
+import { Button } from "@madooei/shadcn-all-in-one/button";
+import { Label } from "@madooei/shadcn-all-in-one/label";
 import {
   Sidebar as SidebarRoot,
   SidebarContent,
@@ -13,7 +13,7 @@ import {
   SidebarRail,
   useSidebar,
   SidebarProvider,
-} from "@/components/ui/sidebar";
+} from "@madooei/shadcn-all-in-one/sidebar";
 import { useState } from "react";
 import { useWindowSize } from "@uidotdev/usehooks";
 import { HomeIcon, LogOutIcon } from "lucide-react";
@@ -23,7 +23,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from "@madooei/shadcn-all-in-one/select";
 
 const SidebarTestPage = () => {
   return (
