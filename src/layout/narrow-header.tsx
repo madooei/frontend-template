@@ -1,5 +1,5 @@
-import { cn } from "@/lib/utils";
-import { SidebarTrigger } from "@/components/ui/sidebar";
+import { cn } from "@madooei/shadcn-all-in-one/utils";
+import { SidebarTrigger } from "@madooei/shadcn-all-in-one/sidebar";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 const DEBUG = false;

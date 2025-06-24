@@ -1,7 +1,15 @@
 import { Bar, BarChart, Line, LineChart } from "recharts";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { type ChartConfig, ChartContainer } from "@/components/ui/chart";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@madooei/shadcn-all-in-one/card";
+import {
+  type ChartConfig,
+  ChartContainer,
+} from "@madooei/shadcn-all-in-one/chart";
 
 const data = [
   {

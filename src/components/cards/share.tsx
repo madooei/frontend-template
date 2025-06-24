@@ -1,22 +1,26 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@madooei/shadcn-all-in-one/avatar";
+import { Button } from "@madooei/shadcn-all-in-one/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+} from "@madooei/shadcn-all-in-one/card";
+import { Input } from "@madooei/shadcn-all-in-one/input";
+import { Label } from "@madooei/shadcn-all-in-one/label";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Separator } from "@/components/ui/separator";
+} from "@madooei/shadcn-all-in-one/select";
+import { Separator } from "@madooei/shadcn-all-in-one/separator";
 
 export function CardsShare() {
   return (

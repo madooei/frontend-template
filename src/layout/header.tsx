@@ -1,5 +1,5 @@
 import { ThemeToggle } from "@/components/theme-toggle";
-import { SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarTrigger } from "@madooei/shadcn-all-in-one/sidebar";
 import ThemePresetSelector from "@/components/theme-preset-selector";
 import { Link } from "react-router";
 

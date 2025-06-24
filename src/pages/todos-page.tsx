@@ -1,8 +1,13 @@
 import { useEffect, useState } from "react";
 import { Loader2, Plus } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@madooei/shadcn-all-in-one/card";
+import { Button } from "@madooei/shadcn-all-in-one/button";
+import { Input } from "@madooei/shadcn-all-in-one/input";
 import LoadingPage from "@/pages/loading-page";
 import EmptyPage from "@/pages/empty";
 

@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@madooei/shadcn-all-in-one/utils";
 
 const DEBUG = false;
 

@@ -2,10 +2,10 @@ import {
   ResizablePanelGroup,
   ResizableHandle,
   ResizablePanel,
-} from "@/components/ui/resizable";
+} from "@madooei/shadcn-all-in-one/resizable";
 import Header from "./narrow-header";
 import Footer from "./narrow-footer";
-import { cn } from "@/lib/utils";
+import { cn } from "@madooei/shadcn-all-in-one/utils";
 import { WithSidebarLayout } from "./with-sidebar";
 
 const DEBUG = false;

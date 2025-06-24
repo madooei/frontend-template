@@ -1,15 +1,19 @@
 import * as React from "react";
 import { Check, Plus, Send } from "lucide-react";
 
-import { cn } from "@/lib/utils";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
+import { cn } from "@madooei/shadcn-all-in-one/utils";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@madooei/shadcn-all-in-one/avatar";
+import { Button } from "@madooei/shadcn-all-in-one/button";
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
-} from "@/components/ui/card";
+} from "@madooei/shadcn-all-in-one/card";
 import {
   Command,
   CommandEmpty,
@@ -17,7 +21,7 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command";
+} from "@madooei/shadcn-all-in-one/command";
 import {
   Dialog,
   DialogContent,
@@ -25,14 +29,14 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
+} from "@madooei/shadcn-all-in-one/dialog";
+import { Input } from "@madooei/shadcn-all-in-one/input";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
+} from "@madooei/shadcn-all-in-one/tooltip";
 
 const users = [
   {

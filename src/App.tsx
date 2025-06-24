@@ -3,7 +3,7 @@ import { RouterProvider, createBrowserRouter } from "react-router";
 import BaseLayout from "@/layout/base";
 import ShellLayout from "@/layout/shell";
 import ResizableShellLayout from "@/layout/resizable-shell";
-import { useIsMobile } from "@/hooks/use-mobile";
+import { useIsMobile } from "@madooei/shadcn-all-in-one/hooks";
 import LoadingPage from "@/pages/loading-page";
 import AddNotePage from "@/pages/add-note-page";
 import NotesPage from "@/pages/notes-page";

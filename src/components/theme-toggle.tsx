@@ -5,10 +5,10 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "@madooei/shadcn-all-in-one/dropdown-menu";
 import { useTheme } from "@/hooks/use-theme";
-import { cn } from "@/lib/utils";
-import { TooltipButton } from "./tooltip-button";
+import { cn } from "@madooei/shadcn-all-in-one/utils";
+import { TooltipButton } from "@madooei/shadcn-all-in-one/tooltip-button";
 
 export const ThemeToggle: React.FC = () => {
   const { theme, setTheme } = useTheme();

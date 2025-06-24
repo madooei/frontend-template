@@ -1,7 +1,6 @@
 import "@/styles/index.css"; // Keep this line at the top so richColors can be used in the Toaster
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/providers/theme-provider.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import App from "./App.tsx";
@@ -16,7 +15,6 @@ createRoot(root!).render(
       <QueryClientProvider client={queryClient}>
         <App />
       </QueryClientProvider>
-      <Toaster richColors position="bottom-right" />
     </ThemeProvider>
   </StrictMode>,
 );

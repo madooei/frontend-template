@@ -1,8 +1,13 @@
-import { useLoaderData, useFetcher } from "react-router";
 import { useEffect, useRef } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { useLoaderData, useFetcher } from "react-router";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@madooei/shadcn-all-in-one/card";
+import { Button } from "@madooei/shadcn-all-in-one/button";
+import { Input } from "@madooei/shadcn-all-in-one/input";
 import { Loader2, Plus } from "lucide-react";
 import type { PostType } from "@/types/post-types";
 import EmptyPage from "./empty";

@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "@madooei/shadcn-all-in-one/button";
 import { toast } from "sonner";
 
 const ToasterPage: React.FC = () => {
