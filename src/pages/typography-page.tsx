@@ -1,8 +1,8 @@
-import Typography from "@/components/typography";
+import { Typography } from "@madooei/typography";
 
 const TypographyPage: React.FC = () => {
   return (
-    <Typography>
+    <Typography as={"article"}>
       <h1>The Art of Typography</h1>
 
       <p className="callout">
