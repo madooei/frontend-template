@@ -1,0 +1,17 @@
+@import "@madooei/typography/styles.css";
+/* Make sure index.css is imported before this file */
+.typography {
+  --typography-text-color: var(--foreground) !important;
+  --typography-text-muted: var(--muted-foreground) !important;
+  --typography-border-color: var(--border) !important;
+  --typography-background-muted: var(--muted) !important;
+  --typography-background-color: var(--background) !important;
+  --typography-link-color: var(--primary) !important;
+  --typography-highlight-background: var(--secondary) !important;
+  --typography-highlight-text: var(--secondary-foreground) !important;
+  --typography-background-card: var(--card) !important;
+  --typography-background-card-text: var(--card-foreground) !important;
+  --typography-font-sans: var(--font-sans) !important;
+  --typography-font-serif: var(--font-serif) !important;
+  --typography-font-mono: var(--font-mono) !important;
+}
