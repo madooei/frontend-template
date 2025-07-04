@@ -1,6 +1,6 @@
 import type { NoteType } from "@/types/note-types";
 import { useLoaderData } from "react-router";
-import Typography from "@/components/typography";
+import { Typography } from "@madooei/typography";
 
 const NotesPage: React.FC = () => {
   const { notes } = useLoaderData<{ notes: NoteType[] }>();
