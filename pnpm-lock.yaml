@@ -17,6 +17,9 @@ importers:
       '@madooei/shadcn-all-in-one':
         specifier: ^0.2.0
         version: 0.2.0(@tanstack/react-table@8.21.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(cmdk@1.1.1(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(date-fns@4.1.0)(lucide-react@0.511.0(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.58.1(react@19.1.0))(react@19.1.0)(recharts@2.15.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(sonner@2.0.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(tailwindcss@4.1.10)
+      '@madooei/shadcn-theme-presets':
+        specifier: ^0.2.0
+        version: 0.2.0(@madooei/shadcn-all-in-one@0.2.0(@tanstack/react-table@8.21.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(cmdk@1.1.1(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(date-fns@4.1.0)(lucide-react@0.511.0(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.58.1(react@19.1.0))(react@19.1.0)(recharts@2.15.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(sonner@2.0.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(tailwindcss@4.1.10))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(tailwindcss@4.1.10)
       '@madooei/typography':
         specifier: ^0.2.0
         version: 0.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -495,6 +498,14 @@ packages:
         optional: true
       sonner:
         optional: true
+
+  '@madooei/shadcn-theme-presets@0.2.0':
+    resolution: {integrity: sha512-8cheq8eaJa4ELigoYknXSIHuTwqWhrZBm7GSYGMAYRv3ave0rWDEuFKWoV2pmL1bBKUWgMLEkryKjN/5po2v1Q==}
+    peerDependencies:
+      '@madooei/shadcn-all-in-one': '>=0.2.1'
+      react: '>=19.0.0'
+      react-dom: '>=19.0.0'
+      tailwindcss: '>=4.0.0'
 
   '@madooei/typography@0.2.0':
     resolution: {integrity: sha512-m9LafOAMJdp+n72SxMVWtcfP9pHyUvxaVleClxocqkTfQFeJvQx8f1I+UaosHMxNQybH0hibm5vnw4XBQ57JgA==}
@@ -2830,6 +2841,17 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
       - '@types/react-dom'
+
+  '@madooei/shadcn-theme-presets@0.2.0(@madooei/shadcn-all-in-one@0.2.0(@tanstack/react-table@8.21.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(cmdk@1.1.1(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(date-fns@4.1.0)(lucide-react@0.511.0(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.58.1(react@19.1.0))(react@19.1.0)(recharts@2.15.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(sonner@2.0.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(tailwindcss@4.1.10))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(tailwindcss@4.1.10)':
+    dependencies:
+      '@madooei/shadcn-all-in-one': 0.2.0(@tanstack/react-table@8.21.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(cmdk@1.1.1(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(date-fns@4.1.0)(lucide-react@0.511.0(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.58.1(react@19.1.0))(react@19.1.0)(recharts@2.15.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(sonner@2.0.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(tailwindcss@4.1.10)
+      '@nanostores/logger': 1.0.0(nanostores@1.0.1)
+      '@nanostores/persistent': 1.0.0(nanostores@1.0.1)
+      '@nanostores/react': 1.0.0(nanostores@1.0.1)(react@19.1.0)
+      nanostores: 1.0.1
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+      tailwindcss: 4.1.10
 
   '@madooei/typography@0.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
